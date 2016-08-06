@@ -2,3 +2,8 @@
 /.settings
 /.classpath
 /.project
+/test.lck
+/test.log
+/test.properties
+/test.script
+/test.tmp
