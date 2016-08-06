@@ -12,3 +12,16 @@ app.config(['$routeProvider',
                        });
                    }]);
 
+app.controller('ProductListCtrl', ['$scope', function($scope) {
+	 $scope.products = [
+	                    {'name': 'Img 1',
+	                      'url':'IMG_1589.JPG'
+	                    },
+	                    {'name': 'Img 1',
+		                      'url':'IMG_1590.JPG'
+		                },
+		                {'name': 'Img 1',
+			              'url':'IMG_1591.JPG'
+			            }
+	                  ];
+	                }]);
