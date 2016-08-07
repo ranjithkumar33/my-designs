@@ -10,7 +10,7 @@ import com.mydesign.business.persistence.UserAccount;
 public class UserDaoImpl extends BaseDaoImpl<UserAccount> implements UserDao{
 
 	public UserDaoImpl(SessionFactory sessionFactory) {
-		super(sessionFactory);
+		super(UserAccount.class, sessionFactory);
 		
 	}
 	
@@ -18,8 +18,21 @@ public class UserDaoImpl extends BaseDaoImpl<UserAccount> implements UserDao{
 	private SessionFactory sessionFactory;
 	
 
-	public void saveUser(UserAccount user){
-		insert(user);
+	public UserAccount saveUser(UserAccount user){
+		return insert(user);
 	}
-	
+
+
+	@Override
+	public UserAccount findUserByEmail(String email) {
+		return find("select UserAccount  where u.contact.email=:email", new String[]{"email"}, new Object[]{email});
+	}
+
+
+	@Override
+	public UserAccount findUserByMobile(String mobile) {
+		return find("select UserAccount  where u.contact.mobile=:mobile", new String[]{"mobile"}, new Object[]{mobile});
+	}
+
+
 }

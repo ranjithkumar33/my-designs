@@ -15,9 +15,22 @@ public class UserDto implements Serializable{
 		
 	}
 	
+	private long id;
+	
+	
+	private String name;
+	
 	private ContactDto contact;
 	
 	
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
 
 	public ContactDto getContact() {
 		return contact;
@@ -25,6 +38,14 @@ public class UserDto implements Serializable{
 
 	public void setContact(ContactDto contact) {
 		this.contact = contact;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 

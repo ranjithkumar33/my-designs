@@ -2,11 +2,13 @@ package com.mydesign.business.persistence;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class UserAccount implements Serializable{
@@ -17,11 +19,14 @@ public class UserAccount implements Serializable{
 	private static final long serialVersionUID = 7444263478302677372L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
 	
 	@Column
 	private String name;
+	
+	@OneToOne(cascade=CascadeType.ALL)
+	private ContactInfo contact;
 
 	public long getId() {
 		return id;
@@ -38,7 +43,12 @@ public class UserAccount implements Serializable{
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	
-	
+
+	public ContactInfo getContact() {
+		return contact;
+	}
+
+	public void setContact(ContactInfo contact) {
+		this.contact = contact;
+	}
 }

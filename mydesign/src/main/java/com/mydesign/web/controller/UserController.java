@@ -23,9 +23,10 @@ public class UserController extends BaseController{
 		return "Success";
 	}
 	
+	//{"name":"Test user 11", "contact":{"telephone":"12533336", "mobile":"dasdasdada", "email":"dsdada"}}
 	@RequestMapping(value="/signup", method=RequestMethod.POST, produces={"application/json"})
 	public UserDto signup(@RequestBody UserDto user){
-		return userService.signup(null);
+		return userService.signup(user);
 	}
 	
 	@RequestMapping(value="/login", method=RequestMethod.POST, produces={"application/json"})

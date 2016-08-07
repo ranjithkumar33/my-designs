@@ -68,7 +68,7 @@ public class WebappConfiguration extends WebMvcConfigurerAdapter  {
        //  p.put("hibernate.hbm2ddl.auto", "create-drop");
          //p.put("hibernate.show_sql", true);
 		 p.put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
-	     p.put("hibernate.hbm2ddl.auto", "create-drop");
+	     p.put("hibernate.hbm2ddl.auto", "update");
 	     p.put("hibernate.show_sql", true);
 	     return p;
 	 }
