@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mydesign.business.service.UserService;
+import com.mydesign.web.service.model.SignupShortDto;
 import com.mydesign.web.service.model.Subject;
 import com.mydesign.web.service.model.UserDto;
 
@@ -23,10 +24,10 @@ public class UserController extends BaseController{
 		return "Success";
 	}
 	
-	//{"name":"Test user 11", "contact":{"telephone":"12533336", "mobile":"dasdasdada", "email":"dsdada"}}
+	//{"name":"Test user 11", "emailOrMobile":"9946999373", "password":"testuser123"}
 	@RequestMapping(value="/signup", method=RequestMethod.POST, produces={"application/json"})
-	public UserDto signup(@RequestBody UserDto user){
-		return userService.signup(user);
+	public UserDto signup(@RequestBody SignupShortDto signup){
+		return userService.signup(signup);
 	}
 	
 	@RequestMapping(value="/login", method=RequestMethod.POST, produces={"application/json"})

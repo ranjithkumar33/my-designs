@@ -25,6 +25,9 @@ public class UserAccount implements Serializable{
 	@Column
 	private String name;
 	
+	@Column
+	private String password;
+	
 	@OneToOne(cascade=CascadeType.ALL)
 	private ContactInfo contact;
 
@@ -50,5 +53,13 @@ public class UserAccount implements Serializable{
 
 	public void setContact(ContactInfo contact) {
 		this.contact = contact;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 }
