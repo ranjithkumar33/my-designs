@@ -8,9 +8,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 
 @Entity
+@NamedQueries(value={
+		@NamedQuery(name="User.findUserByEmail", query="from UserAccount u where u.contact.email=:email"),
+		@NamedQuery(name="User.findUserByMobile", query="from UserAccount u where u.contact.mobile=:mobile")
+		})
 public class UserAccount implements Serializable{
 
 	/**

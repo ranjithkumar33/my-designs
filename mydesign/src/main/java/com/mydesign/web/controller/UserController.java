@@ -25,12 +25,13 @@ public class UserController extends BaseController{
 	}
 	
 	//{"name":"Test user 11", "emailOrMobile":"9946999373", "password":"testuser123"}
-	@RequestMapping(value="/signup", method=RequestMethod.POST, produces={"application/json"})
+	@RequestMapping(value="/user/signup", method=RequestMethod.POST, produces={"application/json"})
 	public UserDto signup(@RequestBody SignupShortDto signup){
 		return userService.signup(signup);
 	}
 	
-	@RequestMapping(value="/login", method=RequestMethod.POST, produces={"application/json"})
+	//{"principal":"ranjith@test.com", "password":"testuser123"}
+	@RequestMapping(value="/user/login", method=RequestMethod.POST, produces={"application/json"})
 	public UserDto login(@RequestBody Subject subject, HttpServletResponse response){
 		return userService.login(subject, response);
 	}

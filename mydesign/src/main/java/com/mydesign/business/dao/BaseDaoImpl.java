@@ -1,33 +1,55 @@
 package com.mydesign.business.dao;
 
+import java.io.Serializable;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
-import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
+import org.springframework.beans.factory.annotation.Autowired;
 
-public class BaseDaoImpl<T> extends HibernateDaoSupport{
+public class BaseDaoImpl<T> {
 
 	private T t;
 	
 	private Class<T> clazz;
 	
-	public BaseDaoImpl(Class<T> clazz, SessionFactory sessionFactory){
-	    setSessionFactory(sessionFactory);
+	public BaseDaoImpl(Class<T> clazz){
 	    this.clazz=clazz;
 	}
 	
+	@Autowired
+	private SessionFactory sessionFactory;
 	
-	protected T insert(T t){
-		Long id = (Long) getHibernateTemplate().save(t);
-		return getHibernateTemplate().load(clazz, id);
+	
+	protected void insert(T t){
+		sessionFactory.getCurrentSession().saveOrUpdate(t);
 	}
 	
-	protected T find(String hql, String[] params, Object[] values){
-		List ts = getHibernateTemplate().findByNamedParam(hql, params, values);
-		if(null != ts && ts.size() > 0){
-			return (T)ts.get(0);
+	protected T load(Serializable id){
+		return (T)sessionFactory.getCurrentSession().get(clazz, id);
+	}
+	
+	protected List<T> findByNamedQuery(String namedQuery, Map<String, String> paramMap){
+		List<T> results = Collections.emptyList();
+		try{
+			Query query = sessionFactory.getCurrentSession().getNamedQuery(namedQuery);
+			  if(null != paramMap && !paramMap.isEmpty()){
+				  Set<Entry<String, String>> eSet = paramMap.entrySet();
+				  if(null != eSet && !eSet.isEmpty()){
+					  for(Entry<String, String> entry : eSet){
+						  query.setParameter(entry.getKey(), entry.getValue());
+					  }
+				  }
+			  }
+			results = query.list();
+		}catch (Exception e) {
+			throw e;
 		}
-		return null;
+		return results;
 	}
 
 }

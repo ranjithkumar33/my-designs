@@ -11,8 +11,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.orm.hibernate5.HibernateTransactionManager;
-import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.orm.hibernate4.HibernateTransactionManager;
+import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -39,7 +39,7 @@ public class WebappConfiguration extends WebMvcConfigurerAdapter  {
 	}
 	
 	@Bean
-	public LocalSessionFactoryBean  sessionFactory(){
+	public LocalSessionFactoryBean sessionFactory(){
 		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
 	      sessionFactory.setDataSource(dataSource());
 	      sessionFactory.setPackagesToScan(new String[] { "com.mydesign.business.persistence" });

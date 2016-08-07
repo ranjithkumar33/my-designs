@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,8 +27,6 @@ public class UserServiceImpl implements UserService{
 	
 	private static final String MOBILE_REGX = "^[7-9][0-9]{9}$";
 	
-	private static final String EMAIL_REGX = "/^(\\+\\d{1,3}[- ]?)?\\d{10}$/";
-	
 	private static final String HTTP_AUTHORIZATION_HEADER = "Authorization";
 	
 	@Autowired
@@ -46,9 +43,11 @@ public class UserServiceImpl implements UserService{
 		ContactType type = getContactType(signup.getEmailOrMobile());
 		switch(type){
 			case Mobile :
+				checkUnique(ContactType.Mobile, signup);
 				user = signUpUser(ContactType.Mobile, signup);
 			break;
 			case Email :
+				checkUnique(ContactType.Email, signup);
 				user = signUpUser(ContactType.Email, signup);
 			break;
 			default:
@@ -57,10 +56,42 @@ public class UserServiceImpl implements UserService{
 		return user;
 	}
 	
+
+	public UserDto login(Subject subject, HttpServletResponse response) {
+		UserAccount u = authenticate(subject); 
+	    postAuthentication(subject, response);
+		return toDto(u, new UserDto());
+	}
+	
+	
+	private void checkUnique(ContactType type, SignupShortDto signup) {
+		if(type.equals(ContactType.Mobile) && !uniqueMobile(signup.getEmailOrMobile())){
+			throw new RuntimeException("This mobile number is already used!");	
+		}else if(type.equals(ContactType.Email) && !uniqueEmail(signup.getEmailOrMobile())){
+			throw new RuntimeException("This email is already used!");	
+		}
+	}
+
+	private boolean uniqueEmail(String email) {
+		if(null == userDao.findUserByEmail(email)){
+			return true;
+		}
+		return false;
+	}
+
+
+	private boolean uniqueMobile(String mobile) {
+		if(null == userDao.findUserByMobile(mobile)){
+			return true;
+		}
+		return false;
+	}
+
+
 	private UserDto signUpUser(ContactType type, SignupShortDto signup) {
 		UserAccount u = new UserAccount();
 		u.setName(signup.getName());
-		u.setPassword(getEncryptedPassword(signup.getPassword()));
+		u.setPassword(getEncryptedString(signup.getPassword()));
 		ContactInfo c = new ContactInfo();
 		if(type.equals(ContactType.Mobile)){
 			c.setMobile(signup.getEmailOrMobile());
@@ -69,17 +100,13 @@ public class UserServiceImpl implements UserService{
 		}
 		u.setContact(c);
 		u = userDao.saveUser(u);
-		
-		UserDto user = new UserDto();
-		user.setName(u.getName());
-		user.setId(u.getId());
-		return user;
+		return toDto(u, new UserDto());
 	}
 
-	public UserDto login(Subject subject, HttpServletResponse response) {
-	    authenticate(subject);
-	    postAuthentication(subject, response);
-		return null;
+	private UserDto toDto(UserAccount entity, UserDto dto){
+		dto.setName(entity.getName());
+		dto.setId(entity.getId());
+		return dto;
 	}
 
 	private ContactType getContactType(String emailOrMobile) {
@@ -110,7 +137,7 @@ public class UserServiceImpl implements UserService{
 	}
 
 	
-	private String getEncryptedPassword(String password){
+	private String getEncryptedString(String password){
 		Cipher cipher = new Cipher();
 		String encryptedPassword = cipher.encrypt(password);
 		return encryptedPassword;
@@ -121,11 +148,20 @@ public class UserServiceImpl implements UserService{
 	}
 
 	private String computeHeaderValue(Subject subject) {
-		return subject.getPrincipal();
+		return getEncryptedString(subject.getPrincipal());
 	}
 
-	private void authenticate(Subject subject) {
-		
+	private UserAccount authenticate(Subject subject) {
+		UserAccount u = userDao.findUserByEmail(subject.getPrincipal());
+		if(u == null) {
+			u = userDao.findUserByMobile(subject.getPrincipal());
+		}
+			
+		if(null != u && u.getPassword().equals(getEncryptedString(subject.getPassword()))){
+			return u;
+		}else{
+			throw new RuntimeException("Invalid email or password!");	
+		}
 	}
 
 	

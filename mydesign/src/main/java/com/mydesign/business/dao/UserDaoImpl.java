@@ -1,7 +1,9 @@
 package com.mydesign.business.dao;
 
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.stereotype.Repository;
 
 import com.mydesign.business.persistence.UserAccount;
@@ -9,29 +11,38 @@ import com.mydesign.business.persistence.UserAccount;
 @Repository
 public class UserDaoImpl extends BaseDaoImpl<UserAccount> implements UserDao{
 
-	public UserDaoImpl(SessionFactory sessionFactory) {
-		super(UserAccount.class, sessionFactory);
+	public UserDaoImpl() {
+		super(UserAccount.class);
 		
 	}
-	
-	@Autowired
-	private SessionFactory sessionFactory;
-	
 
 	public UserAccount saveUser(UserAccount user){
-		return insert(user);
+		insert(user);
+		return load(user.getId());
 	}
 
 
 	@Override
 	public UserAccount findUserByEmail(String email) {
-		return find("select UserAccount  where u.contact.email=:email", new String[]{"email"}, new Object[]{email});
+		Map<String, String> paramMap = new HashMap<String, String>();
+		paramMap.put("email", email);
+		List<UserAccount> users = findByNamedQuery("User.findUserByEmail", paramMap);
+		if(null != users && users.size() > 0){
+			return users.get(0);
+		}
+		return null;
 	}
 
 
 	@Override
 	public UserAccount findUserByMobile(String mobile) {
-		return find("select UserAccount  where u.contact.mobile=:mobile", new String[]{"mobile"}, new Object[]{mobile});
+		Map<String, String> paramMap = new HashMap<String, String>();
+		paramMap.put("mobile", mobile);
+		List<UserAccount> users = findByNamedQuery("User.findUserByMobile", paramMap);
+		if(null != users && users.size() > 0){
+			return users.get(0);
+		}
+		return null;
 	}
 
 
