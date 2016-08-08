@@ -5,12 +5,16 @@ import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
+
+import com.mydesign.business.service.UserRole;
 
 @Entity
 @NamedQueries(value={
@@ -23,6 +27,7 @@ public class UserAccount implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 7444263478302677372L;
+	
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -33,6 +38,9 @@ public class UserAccount implements Serializable{
 	
 	@Column
 	private String password;
+	
+	@Enumerated(EnumType.STRING)
+	private UserRole role;
 	
 	@OneToOne(cascade=CascadeType.ALL)
 	private ContactInfo contact;
@@ -67,5 +75,13 @@ public class UserAccount implements Serializable{
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public UserRole getRole() {
+		return role;
+	}
+
+	public void setRole(UserRole role) {
+		this.role = role;
 	}
 }

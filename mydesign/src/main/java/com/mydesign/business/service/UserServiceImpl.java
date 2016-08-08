@@ -98,6 +98,7 @@ public class UserServiceImpl implements UserService{
 		}else if(type.equals(ContactType.Email)){
 			c.setEmail(signup.getEmailOrMobile());
 		}
+		u.setRole(UserRole.PublicUser);
 		u.setContact(c);
 		u = userDao.saveUser(u);
 		return toDto(u, new UserDto());
