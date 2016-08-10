@@ -2,20 +2,20 @@ package com.mydesign.web.service.model;
 
 public enum UserGroup{
 	
-	SUPER_ADMIN("Super-admin", new Permission[] {Permission.SuperAdmin, Permission.Administrator, Permission.Editor, Permission.Author, Permission.Reader}),
-	VENDOR_ADMIN("Vendor-admin", new Permission[] {Permission.Administrator, Permission.Editor, Permission.Author, Permission.Reader}),
-	GENERAL_USER("general-user", new Permission[] {Permission.Author, Permission.Reader});
+	SUPER_ADMIN("Super-admin", new EPermission[] {EPermission.SuperAdmin, EPermission.Administrator, EPermission.Editor, EPermission.Author, EPermission.Reader}),
+	VENDOR_ADMIN("Vendor-admin", new EPermission[] {EPermission.Administrator, EPermission.Editor, EPermission.Author, EPermission.Reader}),
+	GENERAL_USER("general-user", new EPermission[] {EPermission.Author, EPermission.Reader});
 	
-	private Permission[] permissions;
+	private EPermission[] permissions;
 	
 	private String roleName;
 	
-	UserGroup(String name, Permission... permission){
+	UserGroup(String name, EPermission... permission){
 		this.roleName=name;
 		this.permissions = permission;
 	}
 
-	public Permission[] getPermissions() {
+	public EPermission[] getPermissions() {
 		return permissions;
 	}
 

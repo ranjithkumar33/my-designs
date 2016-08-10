@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.mydesign.business.dao.UserDao;
 import com.mydesign.business.persistence.ContactInfo;
 import com.mydesign.business.persistence.UserAccount;
-import com.mydesign.web.service.model.Permission;
+import com.mydesign.web.service.model.EPermission;
 import com.mydesign.web.service.model.SignupShortDto;
 import com.mydesign.web.service.model.Subject;
 import com.mydesign.web.service.model.UserDto;
@@ -167,7 +167,7 @@ public class UserServiceImpl implements UserService{
 
 	
 
-	public void checkPermission(Permission permission) {
+	public void checkPermission(EPermission permission) {
 		// TODO Auto-generated method stub
 		
 	}

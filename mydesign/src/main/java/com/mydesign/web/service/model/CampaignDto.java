@@ -1,6 +1,8 @@
 package com.mydesign.web.service.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CampaignDto implements Serializable{
 
@@ -9,18 +11,18 @@ public class CampaignDto implements Serializable{
 	 */
 	private static final long serialVersionUID = 7889783905635387739L;
 	
-	public CampaignDto(String name, String title, String startDate, String endDate){
-		this.name=name;
+	public CampaignDto(String title, String startDate, String endDate, AddressDto eventLocation, List<EProductType> productTypes){
 		this.title=title;
 		this.startDate=startDate;
 		this.endDate=endDate;
+		this.eventLocation=eventLocation;
+		this.productTypes=productTypes;
 	}
 	
 	public CampaignDto(){
 	
 	}
 	
-	private String name;
 	
 	private String code;
 	
@@ -30,18 +32,19 @@ public class CampaignDto implements Serializable{
 	
 	private String endDate;
 	
-	//Eg:- clothing, food items etc..
-	private String category;
+	private ECampaignWorkflowStatus status;
 	
-	private AddressDto venue;
+	//Eg:- clothing, food items etc..
+	private List<EProductType> productTypes = new ArrayList<>();
+	
+	private AddressDto eventLocation;
+	
+	private List<IBusinessEntity> vendors = new ArrayList<>();
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
+	private List<IBusinessEntity> organisers = new ArrayList<>();
+	
+	private List<SupportingDocumentDto> authorisationSupportingDocuments = new ArrayList<>();
+	
 
 	public String getCode() {
 		return code;
@@ -75,21 +78,55 @@ public class CampaignDto implements Serializable{
 		this.endDate = endDate;
 	}
 
-	public AddressDto getVenue() {
-		return venue;
+	public List<IBusinessEntity> getVendors() {
+		return vendors;
 	}
 
-	public void setVenue(AddressDto venue) {
-		this.venue = venue;
+	public void setVendors(List<IBusinessEntity> vendors) {
+		this.vendors = vendors;
 	}
 
-	public String getCategory() {
-		return category;
+	public List<IBusinessEntity> getOrganisers() {
+		return organisers;
 	}
 
-	public void setCategory(String category) {
-		this.category = category;
+	public void setOrganisers(List<IBusinessEntity> organisers) {
+		this.organisers = organisers;
 	}
+
+	public List<EProductType> getProductTypes() {
+		return productTypes;
+	}
+
+	public void setProductTypes(List<EProductType> productTypes) {
+		this.productTypes = productTypes;
+	}
+
+	public AddressDto getEventLocation() {
+		return eventLocation;
+	}
+
+	public void setEventLocation(AddressDto eventLocation) {
+		this.eventLocation = eventLocation;
+	}
+
+	public List<SupportingDocumentDto> getAuthorisationSupportingDocuments() {
+		return authorisationSupportingDocuments;
+	}
+
+	public void setAuthorisationSupportingDocuments(
+			List<SupportingDocumentDto> authorisationSupportingDocuments) {
+		this.authorisationSupportingDocuments = authorisationSupportingDocuments;
+	}
+
+	public ECampaignWorkflowStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(ECampaignWorkflowStatus status) {
+		this.status = status;
+	}
+
 	
 
 }

@@ -1,10 +1,10 @@
 package com.mydesign.business.service;
 
-import com.mydesign.web.service.model.Permission;
+import com.mydesign.web.service.model.EPermission;
 
 
 public interface BaseService {
 
-  void checkPermission(Permission permission);
+  void checkPermission(EPermission permission);
 	
 }

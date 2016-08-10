@@ -1,8 +1,10 @@
 package com.mydesign.web.service.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
-public class VendorDto implements Serializable{
+public class VendorDto extends BusinessEntity implements Serializable{
 
 	/**
 	 * 
@@ -11,49 +13,28 @@ public class VendorDto implements Serializable{
 	
 	
 	public VendorDto(String name, AddressDto address, ContactDto contact){
-		this.name=name;
-		this.address=address;
-		this.contact=contact;
+		super(name, address, contact);
 	}
 	
-	private String name;
+	private EVendorType type;
 	
-	private String code;
+	private List<EProductType> productTypes = new ArrayList<>();
+
+
+	public EVendorType getType() {
+		return type;
+	}
+
+	public void setType(EVendorType type) {
+		this.type = type;
+	}
+
+	public List<EProductType> getProductTypes() {
+		return productTypes;
+	}
+
+	public void setProductTypes(List<EProductType> productTypes) {
+		this.productTypes = productTypes;
+	}
 	
-	private AddressDto address;
-	
-	private ContactDto contact;
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getCode() {
-		return code;
-	}
-
-	public void setCode(String code) {
-		this.code = code;
-	}
-
-	public AddressDto getAddress() {
-		return address;
-	}
-
-	public void setAddress(AddressDto address) {
-		this.address = address;
-	}
-
-	public ContactDto getContact() {
-		return contact;
-	}
-
-	public void setContact(ContactDto contact) {
-		this.contact = contact;
-	}
-
 }

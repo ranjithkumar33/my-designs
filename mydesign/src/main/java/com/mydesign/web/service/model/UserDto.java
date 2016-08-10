@@ -2,7 +2,7 @@ package com.mydesign.web.service.model;
 
 import java.io.Serializable;
 
-public class UserDto implements Serializable{
+public class UserDto implements IPerson, Serializable{
 
 	/**
 	 * 

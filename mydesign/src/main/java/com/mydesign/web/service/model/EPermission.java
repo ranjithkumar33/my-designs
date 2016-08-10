@@ -1,6 +1,6 @@
 package com.mydesign.web.service.model;
 
-public enum Permission {
+public enum EPermission {
 	
 	SuperAdmin, Administrator, Editor, Author, Reader
 
