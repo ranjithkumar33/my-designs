@@ -2,7 +2,7 @@ package com.mydesign.web.service.model;
 
 import java.io.Serializable;
 
-public class OrganiserDto extends BusinessEntity implements Serializable{
+public class OrganiserDto extends BusinessEntityDto implements Serializable{
 
 	public OrganiserDto(String name, AddressDto address, ContactDto contact) {
 		super(name, address, contact);

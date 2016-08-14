@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import com.mydesign.business.service.UserRole;
 
@@ -21,6 +22,7 @@ import com.mydesign.business.service.UserRole;
 		@NamedQuery(name="User.findUserByEmail", query="from UserAccount u where u.contact.email=:email"),
 		@NamedQuery(name="User.findUserByMobile", query="from UserAccount u where u.contact.mobile=:mobile")
 		})
+@Table(name="useraccount")
 public class UserAccount implements Serializable{
 
 	/**

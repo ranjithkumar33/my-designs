@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VendorDto extends BusinessEntity implements Serializable{
+public class VendorDto extends BusinessEntityDto implements Serializable{
 
 	/**
 	 * 

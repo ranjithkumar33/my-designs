@@ -1,20 +1,21 @@
 package com.mydesign.web.service.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
-public class BusinessEntity implements IBusinessEntity, Serializable{
+public class BusinessEntityDto implements IBusinessEntity, Serializable{
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -6444910281274314544L;
 	
-	public BusinessEntity(String name, AddressDto address, ContactDto contact){
+	public BusinessEntityDto(String name, AddressDto address, ContactDto contact){
 		this.name=name;
 		this.address=address;
 		this.contact=contact;
+	}
+	
+	public BusinessEntityDto(){
 	}
 
 	private String name;
@@ -25,19 +26,8 @@ public class BusinessEntity implements IBusinessEntity, Serializable{
 	
 	private ContactDto contact;
 
-	private List<IPerson> staffs = new ArrayList<>();
+	private EBusinessEntityType entityType;
 
-	public List<IPerson> getStaffs() {
-		return staffs;
-	}
-
-	public void setStaffs(List<IPerson> staffs) {
-		this.staffs = staffs;
-	}
-	
-	public void addStaff(IPerson staff) {
-		this.staffs.add(staff);
-	}
 	public String getName() {
 		return name;
 	}
@@ -69,4 +59,13 @@ public class BusinessEntity implements IBusinessEntity, Serializable{
 	public void setContact(ContactDto contact) {
 		this.contact = contact;
 	}
+
+	public EBusinessEntityType getEntityType() {
+		return entityType;
+	}
+
+	public void setEntityType(EBusinessEntityType entityType) {
+		this.entityType = entityType;
+	}
+
 }
