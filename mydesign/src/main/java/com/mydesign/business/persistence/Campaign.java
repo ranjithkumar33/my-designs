@@ -14,6 +14,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -68,6 +69,9 @@ public class Campaign extends BaseEntity implements Serializable{
 	@JoinTable(name="campaign_organiser", joinColumns={@JoinColumn(name="campaign_id", nullable=false)}, inverseJoinColumns={@JoinColumn(name="organiser_id")})
 	private List<Organiser> organisers = new ArrayList<>();
 
+	@OneToMany
+	@JoinColumn(name="campaign_id")
+	private List<SupportingDocument> supportingDocuments = new ArrayList<>();
 	
 	public String getCode() {
 		return code;
@@ -150,7 +154,14 @@ public class Campaign extends BaseEntity implements Serializable{
 	public void setOrganisers(List<Organiser> organisers) {
 		this.organisers = organisers;
 	}
-	
-	//private List<SupportingDocumentDto> authorisationSupportingDocuments = new ArrayList<>();
+
+	public List<SupportingDocument> getSupportingDocuments() {
+		return supportingDocuments;
+	}
+
+	public void setSupportingDocuments(List<SupportingDocument> supportingDocuments) {
+		this.supportingDocuments = supportingDocuments;
+	}
+
 	
 }

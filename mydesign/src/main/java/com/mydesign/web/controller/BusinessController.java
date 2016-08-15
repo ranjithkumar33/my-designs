@@ -18,7 +18,7 @@ public class BusinessController extends BaseController{
 	
 	
 	//{"name":"Vedika", "entityType":"Vendor",  "address":{"address1":"xxxx", "address2":"xxxx", "city":"trvx","state":"keralax", "locality":"ullooor", "pin":"25333542"}, "contact":{"telephone":"0495201470x", "mobile":"9946999373x", "email":"test@test.comx"}}
-	@RequestMapping(value="/business/create", method=RequestMethod.POST, produces={"application/json"})
+	@RequestMapping(value="/business", method=RequestMethod.POST, produces={"application/json"})
 	public BusinessEntityDto signup(@RequestBody BusinessEntityDto bz){
 		return businessService.createBusinessEntity(bz);
 	}
