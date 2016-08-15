@@ -18,10 +18,10 @@ import com.mydesign.business.persistence.Address;
 import com.mydesign.business.persistence.Campaign;
 import com.mydesign.business.persistence.Organiser;
 import com.mydesign.business.persistence.Vendor;
+import com.mydesign.business.service.constant.ECampaignWorkflowStatus;
+import com.mydesign.business.service.constant.EProductType;
 import com.mydesign.business.util.CodeUtil;
 import com.mydesign.web.service.model.CampaignDto;
-import com.mydesign.web.service.model.ECampaignWorkflowStatus;
-import com.mydesign.web.service.model.EProductType;
 import com.mydesign.web.service.model.GeneralResponseDto;
 
 @Transactional

@@ -1,5 +1,7 @@
 package com.mydesign.web.service.model;
 
+import com.mydesign.business.service.constant.EPermission;
+
 public enum UserGroup{
 	
 	SUPER_ADMIN("Super-admin", new EPermission[] {EPermission.SuperAdmin, EPermission.Administrator, EPermission.Editor, EPermission.Author, EPermission.Reader}),

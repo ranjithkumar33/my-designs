@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mydesign.business.service.constant.EProductType;
+import com.mydesign.business.service.constant.EVendorType;
+
 public class VendorDto extends BusinessEntityDto implements Serializable{
 
 	/**

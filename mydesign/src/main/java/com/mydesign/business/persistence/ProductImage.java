@@ -4,9 +4,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.mydesign.web.service.model.EImageType;
+import com.mydesign.business.service.constant.EImageType;
 
 @Entity
 @Table(name="product_image")
@@ -61,6 +62,5 @@ public class ProductImage extends BaseEntity{
 	public void setUrl(String url) {
 		this.url = url;
 	}
-	
-	
+
 }

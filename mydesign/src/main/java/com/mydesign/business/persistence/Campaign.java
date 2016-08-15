@@ -22,8 +22,8 @@ import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.mydesign.web.service.model.ECampaignWorkflowStatus;
-import com.mydesign.web.service.model.EProductType;
+import com.mydesign.business.service.constant.ECampaignWorkflowStatus;
+import com.mydesign.business.service.constant.EProductType;
 
 @Entity
 @Table(name="campaign")

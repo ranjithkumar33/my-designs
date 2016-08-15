@@ -2,6 +2,8 @@ package com.mydesign.web.service.model;
 
 import java.io.Serializable;
 
+import com.mydesign.business.service.constant.EBusinessEntityType;
+
 public class BusinessEntityDto implements IBusinessEntity, Serializable{
 	
 	/**

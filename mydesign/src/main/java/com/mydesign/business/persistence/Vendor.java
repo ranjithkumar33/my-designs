@@ -11,13 +11,12 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.mydesign.web.service.model.EProductType;
-import com.mydesign.web.service.model.EVendorType;
+import com.mydesign.business.service.constant.EProductType;
+import com.mydesign.business.service.constant.EVendorType;
 
 @Entity
 @Table(name="vendor")
@@ -38,9 +37,6 @@ public class Vendor extends BusinessEntity{
 	
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "vendors")
 	private List<Campaign> campaigns = new ArrayList<>();
-	
-	@OneToMany(mappedBy="vendor")
-	private List<Product> products = new ArrayList<>();
 	
 	public EVendorType getType() {
 		return type;
@@ -76,12 +72,4 @@ public class Vendor extends BusinessEntity{
 		this.campaigns = campaigns;
 	}
 
-	public List<Product> getProducts() {
-		return products;
-	}
-
-	public void setProducts(List<Product> products) {
-		this.products = products;
-	}
-	
 }

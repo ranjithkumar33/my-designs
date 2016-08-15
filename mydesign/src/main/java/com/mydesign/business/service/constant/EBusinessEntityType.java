@@ -1,4 +1,4 @@
-package com.mydesign.web.service.model;
+package com.mydesign.business.service.constant;
 
 public enum EBusinessEntityType {
 	

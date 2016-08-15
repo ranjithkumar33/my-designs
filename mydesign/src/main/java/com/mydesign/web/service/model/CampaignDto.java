@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mydesign.business.service.constant.ECampaignWorkflowStatus;
+import com.mydesign.business.service.constant.EProductType;
+
 public class CampaignDto implements Serializable{
 
 	/**

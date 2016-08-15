@@ -2,10 +2,14 @@ package com.mydesign.business.persistence;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.mydesign.business.service.constant.EProductStatus;
 
 @Entity
 @Table(name="product")
@@ -22,23 +26,24 @@ public class Product extends BaseEntity{
 	@Column
 	private String code;
 	
+	@Column
+	private float price;
+	
 	@ManyToOne
-	@JoinColumn(name="cat_id")
+	@JoinColumn(name="category_id")
 	private ProductCategory category;
 	
+	@Enumerated(EnumType.STRING)
 	@Column
-	private String descriptions = "";
+	private EProductStatus status;
 	
 	@Column
-	private String tags="";
-	
-	@ManyToOne
-	@JoinColumn(name="vendor_id")
-	private Vendor vendor;
+	private String description = "";
 	
 	@OneToOne
-	@JoinColumn(name="spec_id")
-	private ProductSpecification specification;
+	@JoinColumn(name="prod_info_id")
+	private ProductInfo productInfo;
+	
 
 	public String getName() {
 		return name;
@@ -64,36 +69,23 @@ public class Product extends BaseEntity{
 		this.category = category;
 	}
 
-	public String getTags() {
-		return tags;
+	
+	public String getDescription() {
+		return description;
 	}
 
-	public void setTags(String tags) {
-		this.tags = tags;
+	public void setDescription(String descriptions) {
+		this.description = descriptions;
 	}
 
-	public Vendor getVendor() {
-		return vendor;
+	public ProductInfo getProductInfo() {
+		return productInfo;
 	}
 
-	public void setVendor(Vendor vendor) {
-		this.vendor = vendor;
+	public void setProductInfo(ProductInfo productInfo) {
+		this.productInfo = productInfo;
 	}
 
-	public String getDescriptions() {
-		return descriptions;
-	}
-
-	public void setDescriptions(String descriptions) {
-		this.descriptions = descriptions;
-	}
-
-	public ProductSpecification getSpecification() {
-		return specification;
-	}
-
-	public void setSpecification(ProductSpecification specification) {
-		this.specification = specification;
-	}
+	
 	
 }

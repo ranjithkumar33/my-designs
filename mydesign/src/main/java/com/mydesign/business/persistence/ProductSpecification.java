@@ -1,6 +1,7 @@
 package com.mydesign.business.persistence;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -28,7 +29,7 @@ public class ProductSpecification extends BaseEntity{
 
 	@Column
 	private String details = "[]";
-
+	
 	public List<Integer> getSizes() {
 		List<Integer> list = null;
 		try {
