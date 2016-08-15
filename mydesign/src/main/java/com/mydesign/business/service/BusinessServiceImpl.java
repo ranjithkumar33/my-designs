@@ -51,13 +51,13 @@ public class BusinessServiceImpl implements BusinessService{
 			((Vendor)bz).setProductTypes(Arrays.asList(new EProductType[]{EProductType.Clothes, EProductType.Jewellery, EProductType.Accessories}));
 			((Vendor)bz).setType(EVendorType.NonProfitOrganization);
 			bz.setAddress(a);
-			bz.setCode(CodeUtil.generateCode());
+			bz.setCode(CodeUtil.generateCode(EBusinessEntityType.Vendor.toString(), dto.getName()));
 			bz.setContact(con);
 			bz.setName(dto.getName());
 		}else if(null != dto.getEntityType() && EBusinessEntityType.EventOrganiser.equals(dto.getEntityType())){
 			bz = new Organiser();
 			bz.setAddress(a);
-			bz.setCode(CodeUtil.generateCode());
+			bz.setCode(CodeUtil.generateCode(EBusinessEntityType.EventOrganiser.toString(), dto.getName()));
 			bz.setContact(con);
 			bz.setName(dto.getName());
 		}

@@ -6,5 +6,5 @@ public interface BusinessDao {
 
 	void saveBusiness(BusinessEntity bz);
 	
-	BusinessEntity getBusiness(long id);
+	BusinessEntity getBusiness(String id);
 }

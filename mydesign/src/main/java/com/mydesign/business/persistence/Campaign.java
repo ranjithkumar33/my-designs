@@ -11,15 +11,13 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -35,9 +33,7 @@ public class Campaign extends BaseEntity implements Serializable{
 	 */
 	private static final long serialVersionUID = 7932084079233330550L;
 	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long id;
+	
 	
 	@Column
 	private String code;
@@ -45,9 +41,11 @@ public class Campaign extends BaseEntity implements Serializable{
 	@Column
 	private String title;
 	
+	@Temporal(TemporalType.DATE)
 	@Column
 	private Date startDate;
 	
+	@Temporal(TemporalType.DATE)
 	@Column
 	private Date endDate;
 
@@ -70,14 +68,7 @@ public class Campaign extends BaseEntity implements Serializable{
 	@JoinTable(name="campaign_organiser", joinColumns={@JoinColumn(name="campaign_id", nullable=false)}, inverseJoinColumns={@JoinColumn(name="organiser_id")})
 	private List<Organiser> organisers = new ArrayList<>();
 
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
+	
 	public String getCode() {
 		return code;
 	}

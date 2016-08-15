@@ -7,9 +7,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
@@ -23,7 +20,7 @@ import com.mydesign.business.service.UserRole;
 		@NamedQuery(name="User.findUserByMobile", query="from UserAccount u where u.contact.mobile=:mobile")
 		})
 @Table(name="useraccount")
-public class UserAccount implements Serializable{
+public class UserAccount extends BaseEntity implements Serializable{
 
 	/**
 	 * 
@@ -31,9 +28,6 @@ public class UserAccount implements Serializable{
 	private static final long serialVersionUID = 7444263478302677372L;
 	
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long id;
 	
 	@Column
 	private String name;
@@ -47,14 +41,7 @@ public class UserAccount implements Serializable{
 	@OneToOne(cascade=CascadeType.ALL)
 	private ContactInfo contact;
 
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
+	
 	public String getName() {
 		return name;
 	}

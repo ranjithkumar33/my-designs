@@ -24,7 +24,7 @@ public class CampaignDaoImpl extends BaseDaoImpl<Campaign> implements CampaignDa
 	}
 
 	@Override
-	public Campaign getCampaign(long id) {
+	public Campaign getCampaign(String id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

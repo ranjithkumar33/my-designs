@@ -17,7 +17,7 @@ public class BusinessDaoImpl extends BaseDaoImpl<BusinessEntity> implements Busi
 	}
 
 	@Override
-	public BusinessEntity getBusiness(long id) {
+	public BusinessEntity getBusiness(String id) {
 		return load(id);
 	}
 

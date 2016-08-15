@@ -6,9 +6,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToOne;
@@ -25,11 +22,6 @@ public class BusinessEntity extends BaseEntity implements Serializable{
 	 */
 	private static final long serialVersionUID = 4563305605224969254L;
 
-	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long id;
-	
 	@Column
 	private String name;
 	
@@ -42,14 +34,6 @@ public class BusinessEntity extends BaseEntity implements Serializable{
 	@OneToOne(targetEntity=ContactInfo.class, cascade=CascadeType.ALL)
 	private ContactInfo contact;
 	
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
 	public String getName() {
 		return name;
 	}

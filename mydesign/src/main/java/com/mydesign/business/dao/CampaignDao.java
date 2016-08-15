@@ -10,7 +10,7 @@ public interface CampaignDao {
 	
 	List<Campaign> getAllCampaign();
 	
-	Campaign getCampaign(long id);
+	Campaign getCampaign(String id);
 	
 	
 }

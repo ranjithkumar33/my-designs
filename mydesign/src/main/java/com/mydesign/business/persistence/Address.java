@@ -2,38 +2,32 @@ package com.mydesign.business.persistence;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="address")
-public class Address {
-	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long id;
+public class Address extends BaseEntity{
 
 	@Column
 	private String address1;
 	
 	@Column
 	private String address2;
+	
+	@Column
+	private String address3;
+	
 	@Column
 	private String locality;
 	@Column
 	private String city;
+	
 	@Column
 	private String state;
+	
 	@Column
 	private String pin;
-	public long getId() {
-		return id;
-	}
-	public void setId(long id) {
-		this.id = id;
-	}
+	
 	public String getAddress1() {
 		return address1;
 	}
@@ -69,5 +63,11 @@ public class Address {
 	}
 	public void setPin(String pin) {
 		this.pin = pin;
+	}
+	public String getAddress3() {
+		return address3;
+	}
+	public void setAddress3(String address3) {
+		this.address3 = address3;
 	}
 }

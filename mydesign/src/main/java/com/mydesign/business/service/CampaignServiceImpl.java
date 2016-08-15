@@ -14,7 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.mydesign.business.dao.BusinessDao;
 import com.mydesign.business.dao.CampaignDao;
-import com.mydesign.business.dao.UserDao;
 import com.mydesign.business.persistence.Address;
 import com.mydesign.business.persistence.Campaign;
 import com.mydesign.business.persistence.Organiser;
@@ -46,7 +45,7 @@ public class CampaignServiceImpl implements CampaignService{
 	public GeneralResponseDto createCampaign(CampaignDto campaign) {
 		
 		Campaign c = new Campaign();
-		c.setCode(CodeUtil.generateCode());
+		c.setCode(CodeUtil.generateCode("Campaign", "Leela season sale"));
 		c.setEndDate(getDateByIndex(10));
 		c.setStartDate(getDateByIndex(2));
 		
@@ -59,7 +58,7 @@ public class CampaignServiceImpl implements CampaignService{
 		
 		c.setEventLocation(a);
 		List<Organiser> ol = new ArrayList<>();
-		ol.add((Organiser)businessDao.getBusiness(2l));
+		ol.add((Organiser)businessDao.getBusiness("40282e81568e578701568e5863f70005"));
 		c.setOrganisers(ol);
 		
 		c.setProductTypes(Arrays.asList(new EProductType[]{EProductType.Clothes, EProductType.Jewellery}));
@@ -67,7 +66,7 @@ public class CampaignServiceImpl implements CampaignService{
 		c.setTitle("Leela season sale");
 		
 		List<Vendor> vl = new ArrayList<>();
-		vl.add((Vendor)businessDao.getBusiness(1l));
+		vl.add((Vendor)businessDao.getBusiness("40282e81568e578701568e582e670002"));
 		c.setVendors(vl);
 		campaignDao.saveCampaign(c);
 		return null;
