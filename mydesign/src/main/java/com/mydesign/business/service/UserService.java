@@ -7,7 +7,7 @@ import com.mydesign.web.service.model.Subject;
 import com.mydesign.web.service.model.UserDto;
 
 
-public interface UserService extends BaseService{
+public interface UserService {
 	
 	public UserDto signup(SignupShortDto signup);
 	

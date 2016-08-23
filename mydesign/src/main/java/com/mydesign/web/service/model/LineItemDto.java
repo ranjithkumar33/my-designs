@@ -21,7 +21,7 @@ public class LineItemDto implements Serializable, Searchable{
 	
 	private String description;
 	
-	private ProductDto product;
+	private ShortProductDto product;
 
 	public String getId() {
 		return id;
@@ -63,11 +63,11 @@ public class LineItemDto implements Serializable, Searchable{
 		this.description = description;
 	}
 
-	public ProductDto getProduct() {
+	public ShortProductDto getProduct() {
 		return product;
 	}
 
-	public void setProduct(ProductDto product) {
+	public void setProduct(ShortProductDto product) {
 		this.product = product;
 	}
 	

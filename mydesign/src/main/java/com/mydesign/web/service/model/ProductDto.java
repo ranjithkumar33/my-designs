@@ -1,86 +1,75 @@
 package com.mydesign.web.service.model;
 
-import java.io.File;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
-public class ProductDto implements Serializable{
+public class ProductDto extends ShortProductDto implements Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 2752390240011526125L;
-	
-	private String name;
-	
-	private String code;
-	
-	private List<String> mediumSizeImages;
-	
-	private List<String> detailedImages;
-	
-	private SpecificationDto specification;
-	
-	private String tags;
-	
-	private int likes;
-	
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 2752390240011526125L;
 
-	public String getName() {
-		return name;
-	}
+    private String description;
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    private String tags = "";
 
-	public String getCode() {
-		return code;
-	}
+    private String sizes = "[]";
 
-	public void setCode(String code) {
-		this.code = code;
-	}
+    private String colors = "[]";
 
-	public List<String> getMediumSizeImages() {
-		return mediumSizeImages;
-	}
+    private String specifications = "[]";
+    
+    private List <ImageDto> images = new ArrayList<>();
 
-	public void setMediumSizeImages(List<String> mediumSizeImages) {
-		this.mediumSizeImages = mediumSizeImages;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public List<String> getDetailedImages() {
-		return detailedImages;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public void setDetailedImages(List<String> detailedImages) {
-		this.detailedImages = detailedImages;
-	}
+    public String getTags() {
+        return tags;
+    }
 
-	public SpecificationDto getSpecification() {
-		return specification;
-	}
+    public void setTags(String tags) {
+        this.tags = tags;
+    }
 
-	public void setSpecification(SpecificationDto specification) {
-		this.specification = specification;
-	}
+    public String getSizes() {
+        return sizes;
+    }
 
-	public String getTags() {
-		return tags;
-	}
+    public void setSizes(String sizes) {
+        this.sizes = sizes;
+    }
 
-	public void setTags(String tags) {
-		this.tags = tags;
-	}
+    public String getColors() {
+        return colors;
+    }
 
-	public int getLikes() {
-		return likes;
-	}
+    public void setColors(String colors) {
+        this.colors = colors;
+    }
 
-	public void setLikes(int likes) {
-		this.likes = likes;
-	}
+    public String getSpecifications() {
+        return specifications;
+    }
 
-	
+    public void setSpecifications(String specifications) {
+        this.specifications = specifications;
+    }
+
+    public List<ImageDto> getImages() {
+        return images;
+    }
+
+    public void setImages(List<ImageDto> images) {
+        this.images = images;
+    }
+
+    
 }

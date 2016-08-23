@@ -12,7 +12,7 @@ import com.mydesign.web.service.model.Searchable;
 
 @RestController
 @RequestMapping("search")
-public interface SearchService extends BaseService{
+public interface SearchService {
 	
 	@RequestMapping(method=RequestMethod.POST, consumes={"text/plain"}, produces={"application/json"})
 	List<Searchable> search(@RequestBody String query);

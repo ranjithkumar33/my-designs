@@ -8,7 +8,7 @@ import com.mydesign.web.service.model.GeneralResponseDto;
 
 @Transactional
 @Service
-public interface SubscriptionService extends BaseService{
+public interface SubscriptionService {
 	
 	GeneralResponseDto subscribe(String contact);
 

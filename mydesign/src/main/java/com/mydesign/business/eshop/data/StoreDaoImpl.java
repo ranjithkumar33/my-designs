@@ -1,7 +1,10 @@
 package com.mydesign.business.eshop.data;
 
+import org.springframework.stereotype.Repository;
+
 import com.mydesign.business.eshop.entity.Store;
 
+@Repository
 public class StoreDaoImpl extends BaseDaoImpl<Store> implements StoreDao{
 
 	public StoreDaoImpl() {
