@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -42,7 +43,7 @@ public class WebappConfiguration extends WebMvcConfigurerAdapter  {
 	public LocalSessionFactoryBean sessionFactory(){
 		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
 	      sessionFactory.setDataSource(dataSource());
-	      sessionFactory.setPackagesToScan(new String[] { "com.mydesign.business.persistence" });
+	      sessionFactory.setPackagesToScan(new String[] {"com.mydesign.business.eshop.entity"});
 	      sessionFactory.setHibernateProperties(hibernateProperties());
 	      return sessionFactory;
 	}
@@ -55,12 +56,20 @@ public class WebappConfiguration extends WebMvcConfigurerAdapter  {
 		//dataSource.setUsername("sa");
 		//dataSource.setPassword("");
 		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-		dataSource.setUrl("jdbc:mysql://localhost:3306/mydesign");
+		dataSource.setUrl("jdbc:mysql://localhost:3306/mydesign_new");
 		dataSource.setUsername("root");
 		dataSource.setPassword("root");
 		return dataSource;
 		
 	}
+	
+	@Bean
+	public HibernateTemplate hibernateTemplate() {
+		HibernateTemplate ht = new HibernateTemplate();
+		ht.setSessionFactory(sessionFactory().getObject());
+	    return ht;
+	 }
+
 	
 	private Properties hibernateProperties() {
 		Properties p = new Properties();
@@ -72,5 +81,6 @@ public class WebappConfiguration extends WebMvcConfigurerAdapter  {
 	     p.put("hibernate.show_sql", true);
 	     return p;
 	 }
-
+	
+	
 }
